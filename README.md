@@ -23,7 +23,7 @@ $ git clone https://github.com/Paybook/Lite.Py
 ```
 
 ## Configure
-1. Insert your api key in /cloud/dependencies/_Constants.py
+1. Insert your api key in /cloud/dependencies/constants.py
    The database is created in RAM setting DB with the special name ```Python ":memory:"``` (Each time the application is restarted the database is deleted)
 ```Python
   	# -​*- coding: utf-8 -*​-import oss
