@@ -15,7 +15,7 @@ A light and simple web application to demonstrate how to take advantage of the P
 4. Sync API key 
 
 ## Install (cli / terminal)
-1. git clone https://github.com/Paybook/Lite.Python/
+1. git clone https://github.com/Paybook/Lite.Py
 
 ## Configure
 1. Insert your api key in /cloud/dependencies/_Constants.py
@@ -24,7 +24,7 @@ A light and simple web application to demonstrate how to take advantage of the P
   	# -​*- coding: utf-8 -*​-import oss
 	PAYBOOK_LINK = 'https://sync.paybook.com/v1/'
 	API_KEY = "YOUR_PAYBOOK_KEY_HERE"
-	DB = "localstorage"
+	DB = ":memory:"
 	DEBUG_MODE = False
 ```
 
