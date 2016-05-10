@@ -1,0 +1,26 @@
+#Lite.Py Git Ignore
+localstorage
+cloud/dependencies/constants.py
+*.pyc
+
+# OS generated files #
+.AppleDouble
+.LSOverride
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Windows #
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
