@@ -2,5 +2,5 @@
 
 PAYBOOK_LINK = 'https://sync.paybook.com/v1/'
 API_KEY = "YOUR_PAYBOOK_KEY_HERE"
-DB = ":memory:"
+DB = "localstorage"
 DEBUG_MODE = True

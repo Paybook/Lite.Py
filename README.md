@@ -24,12 +24,12 @@ $ git clone https://github.com/Paybook/Lite.Py
 
 ## Configure
 1. Insert your api key in /cloud/dependencies/constants.py
-   The database is created in RAM setting DB with the special name ```Python ":memory:"``` (Each time the application is restarted the database is deleted)
+   The database is created in localstorage with the name ```Python "localstorage"```
 ```Python
   	# -​*- coding: utf-8 -*​-import oss
 	PAYBOOK_LINK = 'https://sync.paybook.com/v1/'
 	API_KEY = "YOUR_PAYBOOK_KEY_HERE"
-	DB = ":memory:"
+	DB = "localstorage"
 	DEBUG_MODE = False
 ```
 

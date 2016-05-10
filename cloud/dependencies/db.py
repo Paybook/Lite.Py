@@ -9,8 +9,15 @@ connection = sqlite3.connect(_Constants.DB, check_same_thread=False)
 cur = connection.cursor()
 
 # Create table
-cur.execute('''CREATE TABLE users (username text, password text, id_user text, date text)''')
-cur.execute(''' CREATE TABLE credentials (ownerId text, institution_name text, id_site text, credentials text, data text)''')
+tb_create_users = """CREATE TABLE users (username text, password text, id_user text, date text)"""
+tb_exists_users = "SELECT name FROM sqlite_master WHERE type='table' AND name='users'"
+if not cur.execute(tb_exists_users).fetchone():
+    cur.execute(tb_create_users)
+
+tb_create_credentials = """CREATE TABLE credentials (ownerId text, institution_name text, id_site text, credentials text, data text)"""
+tb_exists_credentials = "SELECT name FROM sqlite_master WHERE type='table' AND name='credentials'"
+if not cur.execute(tb_exists_credentials).fetchone():
+    cur.execute(tb_create_credentials)
 
 
 def sqliter(string):
