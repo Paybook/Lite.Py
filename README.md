@@ -17,7 +17,10 @@ A light and simple web application to demonstrate how to take advantage of the P
 4. Sync API key 
 
 ## Install (cli / terminal)
-1. git clone https://github.com/Paybook/Lite.Py
+
+```sh
+$ git clone https://github.com/Paybook/Lite.Py
+```
 
 ## Configure
 1. Insert your api key in /cloud/dependencies/_Constants.py
