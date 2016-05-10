@@ -5,7 +5,13 @@ A light and simple web application to demonstrate how to take advantage of the P
 ## Requirements
 1. Python v2.7.10
 2. [Flask] (http://flask.pocoo.org/) v0.10.1
+    ```sh
+    $ pip install Flask
+    ```
 3. [Resquests](http://docs.python-requests.org/en/master/) HTTP for Humans v2.7.0
+    ```sh
+    $ pip install requests
+    ```
 4. Sync API key 
 
 ## Install (cli / terminal)
@@ -18,7 +24,7 @@ A light and simple web application to demonstrate how to take advantage of the P
   	# -​*- coding: utf-8 -*​-import oss
 	PAYBOOK_LINK = 'https://sync.paybook.com/v1/'
 	API_KEY = "YOUR_PAYBOOK_KEY_HERE"
-	DB = ":memory:"
+	DB = "localstorage"
 	DEBUG_MODE = False
 ```
 
