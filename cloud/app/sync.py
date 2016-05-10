@@ -17,7 +17,7 @@ def credentials(session, request):
 			institution = request.values['name']
 			data_to_send = {}
 			data_to_send['token'] = session['token']
-			data_to_send['name'] = "donmikeazul@hotmail.com"
+			data_to_send['name'] = session['username']
 			for item in session['catalog']:
 				if institution == item['name']:					
 					data_to_send['id_site'] = item['id_site']
@@ -43,7 +43,7 @@ def sync_account(session, request):
 				if institution == item['name']:
 					data['id_site'] = item['id_site']					
 					break
-			response = _DB.get_response(session['id_user_db'], institution)
+			response = _DB.get_response(session['id_user'], institution)
 			response['institution'] = institution
 			regrex = _Paybook.sync_account(response, data)
 			#f = open('response.json', 'w')

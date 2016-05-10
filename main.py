@@ -5,6 +5,7 @@ from flask import Flask
 from flask import render_template, url_for , request, redirect, session, escape
 from cloud.app import session as _Session
 from cloud.app import sync as _Sync
+from cloud.dependencies import constants as _Constants
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -50,7 +51,7 @@ def logout():
 	return _Session.logout(session)	
 
 if __name__ == "__main__":
-	app.debug = False
+	app.debug = _Constants.DEBUG_MODE
 	app.run()	
 	url_for('static', filename='bootstrap.css')
 	url_for('static', filename='bootstrap.min.css')

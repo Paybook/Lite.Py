@@ -16,13 +16,13 @@ def login(session, request):
 	if 'username' not in session:
 		if request.method == 'POST':
 			api_key = _Constants.API_KEY
-			id_user = session['id_user']
 			email = request.values['email']
+			id_user = _DB.get_id_user(email)
 			psw = request.values['password']
 			if _DB.log_in(session,email,psw):
 				return _Paybook.login(session, email, api_key, id_user)
 			else:
-				return render_template('login.html', err = "Usuario o contraseña incorrectos")
+				return render_template('login.html', err = "Usuario o contraseña incorrectos".decode('utf-8'))
 		else:
 			return render_template('login.html', err = None)
 	else:
@@ -33,19 +33,19 @@ def signup(session, request):
 		if request.method == 'POST':		
 			email = request.values['email']
 			psw = request.values['password']
-			user = {
-				'user': email,
-				'password':psw,
-				'date': datetime.datetime.utcnow()			
-			}
+			user = {}
+			user['user'] =  email
+			user['password'] = psw
+			user['date'] =  datetime.datetime.utcnow()			
 			if _DB.search_user_in_db(email):
 				return render_template('signup.html', err = "Usuario en uso")
 			else:
 				conn = _Paybook.signup(email)
 				if conn.status_code == 200:
-					user['id_user'] = conn.json()['id_user']
-					session['id_user'] = conn.json()['id_user']
-					_DB.users.insert_one(user)
+					user['id_user'] = conn.json()['response']['id_user']
+					session['id_user'] = conn.json()['response']['id_user']
+					_DB.create_user(user)
+					_DB.search_users()
 					return redirect(url_for('login'))
 				else:
 					return render_template('signup.html', err = "Usuario no pudo ser creado")
@@ -58,7 +58,7 @@ def logout(session):
 	if 'username' in session:		
 		session.pop('username', None)
 		session.pop('token', None)
-		session.pop('id_user_db', None)
+		session.pop('id_user', None)
 		session.pop('catalog', None)
 		return redirect(url_for('login'))
 	return redirect(url_for('index'))
