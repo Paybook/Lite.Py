@@ -4,8 +4,8 @@ A light and simple web application to demonstrate how to take advantage of the P
 
 ## Requirements
 1. Python
-2. [Flask](http://flask.pocoo.org/)
-3. [Resquests](http://docs.python-requests.org/en/master/) HTTP for Humans
+2. [Flask] (http://flask.pocoo.org/) 0.10.1
+3. [Resquests](http://docs.python-requests.org/en/master/) HTTP for Humans 2.7.0
 4. Sync API key 
 
 ## Install (cli / terminal)
