@@ -5,11 +5,13 @@ A light and simple web application to demonstrate how to take advantage of the P
 ## Requirements
 1. [Python] (https://python.org) v2.7.10
 2. [Flask] (http://flask.pocoo.org/) v0.10.1
+
 ```sh
 $ pip install Flask
 ```
 
 3. [Resquests](http://docs.python-requests.org/en/master/) HTTP for Humans v2.7.0
+
 ```sh
 $ pip install requests
 ```
