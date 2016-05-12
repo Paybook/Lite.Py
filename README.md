@@ -19,7 +19,7 @@ A light and simple web application to demonstrate how to take advantage of the P
 ## Install (cli / terminal)
 
 ```sh
-$ git clone https://github.com/Paybook/Lite.Py paybook-lite
+$ git clone https://github.com/Paybook/lite-python paybook-lite
 ```
 
 ## Configure
