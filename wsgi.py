@@ -1,4 +1,4 @@
-from lite-python import app
+from main import app
 
 if __name__ == "__main__":
     application.run()
