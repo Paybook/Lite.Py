@@ -24,12 +24,14 @@ from paybook.sdk import Paybook as _Paybook
 import constants as _Constants
 import utilities as _Utilities
 
+PAYBOOK_API_KEY = "YOUR_API_KEY"
+
 app = Flask(__name__)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.secret_key = os.urandom(24)
 logger = _Utilities.setup_logger('app')
-paybook = _Paybook(_Constants.API_KEY,db_environment=True,logger=logger)
+paybook = _Paybook(PAYBOOK_API_KEY,db_environment=True,logger=logger)
 
 @app.route("/signup", methods=['POST'])
 def signup():
@@ -97,6 +99,23 @@ def credentials():
 		db_credentials = params['credentials']
 		logger.debug('Executing ... ')
 		credentials_response = paybook.credentials(token,id_site,db_credentials)
+		logger.debug('Sending response ... ')
+		credentials_response = _Utilities.Success(credentials_response).get_response()
+	except _Paybook_Error as e:
+		credentials_response = e.get_response()
+	except Exception as e:
+		credentials_response = _Utilities.internal_server_error(e)
+	return credentials_response
+
+@app.route("/credentials")
+def get_credentials():
+	try:
+		logger = logging.getLogger('app')
+		logger.debug('\n/credentials')
+		token = request.args.get('token')
+		logger.debug(token)
+		logger.debug('Executing ... ')
+		credentials_response = paybook.get_credentials(token)
 		logger.debug('Sending response ... ')
 		credentials_response = _Utilities.Success(credentials_response).get_response()
 	except _Paybook_Error as e:
