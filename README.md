@@ -3,10 +3,7 @@
 
 Before starting remember you must create a config.json file with your Paybo API Key \0/
 
- ```{
-    "paybook_api_key" : YOUR_API_KEY_GOES_HERE
-  }
-  ```
+ `{"paybook_api_key" : "YOUR_API_KEY_GOES_HERE"}`
 
 **Signup**
 ----
