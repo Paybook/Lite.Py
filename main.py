@@ -6,9 +6,10 @@
 # ██║     ██║   ██║   ██╔══╝      ██╔══╝   ██╔██╗ ██╔══██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝  
 # ███████╗██║   ██║   ███████╗    ███████╗██╔╝ ██╗██║  ██║██║ ╚═╝ ██║██║     ███████╗███████╗
 # ╚══════╝╚═╝   ╚═╝   ╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝
-                                                                                           
+      
 # External:
 import os
+import sys
 from json import dumps
 import json
 from flask import Flask
@@ -23,14 +24,60 @@ from paybook.sdk import Paybook as _Paybook
 # Local:
 import utilities as _Utilities
 
-PAYBOOK_API_KEY = "YOUR_API_KEY"
+# ------ BEGIN of Config script:
+PAYBOOK_API_KEY = None
+DEFUALT_VALUE = 'YOUR_API_KEY_GOES_HERE'
+try:
+	with open('config.json') as data_file:   
+		print 'Reading config file ... ' 
+		default_config = json.load(data_file)
+except:
+	default_config = {
+		"paybook_api_key" : DEFUALT_VALUE
+	}#End of default_config
+	print 'Creating your config.json file ... '
+	with open('config.json', 'w') as configfile:
+		json.dump(default_config,configfile)
+	print 'Remember to set your Paybook API Key at config.json file my friend'
+	sys.exit()
+try:
+	PAYBOOK_API_KEY = default_config['paybook_api_key']
+	if PAYBOOK_API_KEY == DEFUALT_VALUE:
+		print 'Remember to set your Paybook API Key at config.json file my friend'
+		sys.exit()
+	else:
+		print 'Setting Paybook API Key: ' + PAYBOOK_API_KEY
+except:
+	print 'Invalid config file'
+	sys.exit()
+print 'Server started successfully\n'
+print 'Enjoy your Paybook SYNC experience \\0/\n\n'
+# ------ END of Config script
 
+# App:
 app = Flask(__name__)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.secret_key = os.urandom(24)
 logger = _Utilities.setup_logger('app')
 paybook = _Paybook(PAYBOOK_API_KEY,db_environment=True,logger=logger)
+
+@app.route("/sessions")
+def sessions():
+	try:
+		logger = logging.getLogger('app')
+		logger.debug('\n/sessions')
+		token = request.args.get('token')
+		logger.debug(token)
+		logger.debug('Executing ... ')
+		session_response = paybook.validate_session(token)
+		logger.debug('Sending response ... ')
+		session_response = _Utilities.Success(session_response).get_response()
+	except _Paybook_Error as e:# Just an example of how to catch a Paybook API error using SDK
+		session_response = e.get_response()
+	except Exception as e:
+		session_response = _Utilities.internal_server_error(e)
+	return session_response
 
 @app.route("/signup", methods=['POST'])
 def signup():
@@ -193,7 +240,7 @@ def accounts():
 		logger.debug('Executing ... ')
 		site_accounts = paybook.accounts(token,id_site)
 		logger.debug('Sending response ... ')
-		accounts_response = _Utilities.Success({'accounts':site_accounts}).get_response()
+		accounts_response = _Utilities.Success(site_accounts).get_response()
 	except _Paybook_Error as e:
 		accounts_response = e.get_response()
 	except Exception as e:
@@ -222,10 +269,5 @@ def transactions():
 if __name__ == "__main__":
 	app.debug = True
 	app.run()
-	
-
-
-
-
 
 
