@@ -21,7 +21,6 @@ from paybook.sdk import Error as _Paybook_Error
 from paybook.sdk import Paybook as _Paybook
 
 # Local:
-import constants as _Constants
 import utilities as _Utilities
 
 PAYBOOK_API_KEY = "YOUR_API_KEY"
@@ -123,6 +122,25 @@ def get_credentials():
 	except Exception as e:
 		credentials_response = _Utilities.internal_server_error(e)
 	return credentials_response
+
+@app.route("/credentials", methods=['DELETE'])
+def delete_credentials():
+	try:
+		logger = logging.getLogger('app')
+		logger.debug('\n/credentials')
+		params = json.loads(request.data)
+		logger.debug(params)
+		token = params['token']
+		id_credential = params['id_credential']
+		logger.debug('Executing ... ')
+		delete_response = paybook.delete_credentials(token,id_credential)
+		logger.debug('Sending response ... ')
+		delete_response = _Utilities.Success(delete_response).get_response()
+	except _Paybook_Error as e:
+		delete_response = e.get_response()
+	except Exception as e:
+		delete_response = _Utilities.internal_server_error(e)
+	return delete_response
 
 @app.route("/status")
 def status():
