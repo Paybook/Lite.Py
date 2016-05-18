@@ -96,6 +96,7 @@ setup.py
 app.log
 paybook.db
 config.json
+app.log.*
 
 # OS generated files #
 .AppleDouble
