@@ -242,8 +242,10 @@ def accounts():
 		id_site = request.args.get('id_site')
 		logger.debug(token)
 		logger.debug(id_site)
+		if id_site == 'null':
+			id_site = None
 		logger.debug('Executing ... ')
-		site_accounts = paybook.accounts(token,id_site)
+		site_accounts = paybook.accounts(token,id_site=id_site)
 		logger.debug('Sending response ... ')
 		accounts_response = _Utilities.Success(site_accounts).get_response()
 	except _Paybook_Error as e:
@@ -258,11 +260,20 @@ def transactions():
 		logger = logging.getLogger('app')
 		logger.debug('\n/transactions')
 		token = request.args.get('token')
+<<<<<<< HEAD
 		id_account = request.args.get('id_account')
 		logger.debug(token)
 		logger.debug(id_account)
+=======
+		id_site = request.args.get('id_site')
+		id_account = request.args.get('id_account')
+		if id_site == 'null':
+			id_site = None
+		if id_account == 'null':
+			id_account = None
+>>>>>>> e6d86a7bcc0238f52b497b6c4d40e0c7282bdf43
 		logger.debug('Executing ... ')
-		account_transactions = paybook.transactions(token,id_account)
+		account_transactions = paybook.transactions(token,id_account=id_account,id_site=id_site)
 		logger.debug('Sending response ... ')
 		transactions_response = _Utilities.Success({'transactions':account_transactions}).get_response()
 	except _Paybook_Error as e:
