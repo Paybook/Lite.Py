@@ -1,0 +1,33 @@
+
+/accounts
+bf20cb1379eca350d37b1c8e7a8c3340
+None
+Executing ... 
+
+/login
+{u'username': u'mateo1@gmail.com', u'password': u'1234'}
+Executing ... 
+Sending response ... 
+5a7319e28e44fb590499a9383bb5e88e
+Executing ... 
+Sending response ... 
+
+/credentials
+5a7319e28e44fb590499a9383bb5e88e
+Executing ... 
+Sending response ... 
+
+/accounts
+5a7319e28e44fb590499a9383bb5e88e
+None
+Executing ... 
+
+/accounts
+5a7319e28e44fb590499a9383bb5e88e
+None
+Executing ... 
+
+/accounts
+5a7319e28e44fb590499a9383bb5e88e
+None
+Executing ... 

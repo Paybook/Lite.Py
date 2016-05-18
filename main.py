@@ -122,9 +122,14 @@ def catalogues():
 	try:
 		logger = logging.getLogger('app')
 		token = request.args.get('token')
+		is_true = request.args.get('is_true')
 		logger.debug(token)
 		logger.debug('Executing ... ')
-		catalogs_response = paybook.catalogues(token)
+		catalogs_response=None
+		if is_true:
+			catalogs_response = paybook.catalogues(token,is_true=True)
+		else:
+			catalogs_response = paybook.catalogues(token)
 		logger.debug('Sending response ... ')
 		catalogs_response = _Utilities.Success(catalogs_response).get_response()
 	except _Paybook_Error as e:
@@ -252,10 +257,10 @@ def transactions():
 	try:
 		logger = logging.getLogger('app')
 		logger.debug('\n/transactions')
-		params = json.loads(request.data)
-		logger.debug(params)
-		token = params['token']
-		id_account = params['id_account']
+		token = request.args.get('token')
+		id_account = request.args.get('id_account')
+		logger.debug(token)
+		logger.debug(id_account)
 		logger.debug('Executing ... ')
 		account_transactions = paybook.transactions(token,id_account)
 		logger.debug('Sending response ... ')
