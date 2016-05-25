@@ -2,11 +2,11 @@
 
 # ██╗     ██╗████████╗███████╗    ███████╗██╗  ██╗ █████╗ ███╗   ███╗██████╗ ██╗     ███████╗
 # ██║     ██║╚══██╔══╝██╔════╝    ██╔════╝╚██╗██╔╝██╔══██╗████╗ ████║██╔══██╗██║     ██╔════╝
-# ██║     ██║   ██║   █████╗      █████╗   ╚███╔╝ ███████║██╔████╔██║██████╔╝██║     █████╗  
-# ██║     ██║   ██║   ██╔══╝      ██╔══╝   ██╔██╗ ██╔══██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝  
+# ██║     ██║   ██║   █████╗      █████╗   ╚███╔╝ ███████║██╔████╔██║██████╔╝██║     █████╗
+# ██║     ██║   ██║   ██╔══╝      ██╔══╝   ██╔██╗ ██╔══██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝
 # ███████╗██║   ██║   ███████╗    ███████╗██╔╝ ██╗██║  ██║██║ ╚═╝ ██║██║     ███████╗███████╗
 # ╚══════╝╚═╝   ╚═╝   ╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝
-      
+
 # External:
 import os
 import sys
@@ -28,8 +28,8 @@ import utilities as _Utilities
 PAYBOOK_API_KEY = None
 DEFUALT_VALUE = 'YOUR_API_KEY_GOES_HERE'
 try:
-	with open('config.json') as data_file:   
-		print 'Reading config file ... ' 
+	with open('config.json') as data_file:
+		print 'Reading config file ... '
 		default_config = json.load(data_file)
 except:
 	default_config = {
@@ -281,6 +281,4 @@ def transactions():
 
 if __name__ == "__main__":
 	app.debug = True
-	app.run()
-
-
+	app.run(host="0.0.0.0")
