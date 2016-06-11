@@ -12,7 +12,7 @@ import os
 import sys
 from json import dumps
 import json
-from flask import Flask
+from flask import Flask, Response, url_for, redirect
 from flask import request
 from flask.ext.cors import CORS, cross_origin
 import logging
@@ -55,12 +55,16 @@ print 'Enjoy your Paybook SYNC experience \\0/\n\n'
 # ------ END of Config script
 
 # App:
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='/public')
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.secret_key = os.urandom(24)
 logger = _Utilities.setup_logger('app')
 paybook = _Paybook(PAYBOOK_API_KEY,db_environment=True,logger=logger)
+
+@app.route('/', methods=['GET'])
+def index():
+	return redirect(url_for('static', filename='index.html'))
 
 @app.route("/sessions")
 def sessions():
