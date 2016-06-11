@@ -271,6 +271,7 @@ def transactions():
 			id_account = None
 		logger.debug('Executing ... ')
 		account_transactions = paybook.transactions(token,id_account=id_account,id_site=id_site)
+		logger.debug('Transactions: ' + str(len(account_transactions)))
 		logger.debug('Sending response ... ')
 		transactions_response = _Utilities.Success({'transactions':account_transactions}).get_response()
 	except _Paybook_Error as e:
