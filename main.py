@@ -55,7 +55,7 @@ print 'Enjoy your Paybook SYNC experience \\0/\n\n'
 # ------ END of Config script
 
 # App:
-app = Flask(__name__,static_folder='/public')
+app = Flask(__name__,static_folder='public')
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.secret_key = os.urandom(24)
