@@ -16,40 +16,32 @@ from flask import Flask, Response, url_for, redirect
 from flask import request
 from flask.ext.cors import CORS, cross_origin
 import logging
+import getopt
 
 # Paybook SDK:
 from paybook.sdk import Error as _Paybook_Error
 from paybook.sdk import Paybook as _Paybook
-
-# Local:
 import utilities as _Utilities
 
-# ------ BEGIN of Config script:
+argv = sys.argv[1:]
 PAYBOOK_API_KEY = None
-DEFUALT_VALUE = 'YOUR_API_KEY_GOES_HERE'
+a_param = None
 try:
-	with open('config.json') as data_file:
-		print 'Reading config file ... '
-		default_config = json.load(data_file)
-except:
-	default_config = {
-		"paybook_api_key" : DEFUALT_VALUE
-	}#End of default_config
-	print 'Creating your config.json file ... '
-	with open('config.json', 'w') as configfile:
-		json.dump(default_config,configfile)
-	print 'Remember to set your Paybook API Key at config.json file my friend'
+	opts, args = getopt.getopt(argv,"a",["apikey="])
+except Exception as e:
+	print 'Error getting params ... '
+	print e
 	sys.exit()
-try:
-	PAYBOOK_API_KEY = default_config['paybook_api_key']
-	if PAYBOOK_API_KEY == DEFUALT_VALUE:
-		print 'Remember to set your Paybook API Key at config.json file my friend'
-		sys.exit()
-	else:
-		print 'Setting Paybook API Key: ' + PAYBOOK_API_KEY
-except:
-	print 'Invalid config file'
+for opt, arg in opts:
+	if opt in ("-a", "--apikey"):
+		if len(args):
+			PAYBOOK_API_KEY = args[0]
+		a_param = True
+if PAYBOOK_API_KEY is None or a_param is None:
+	print '--a param is required'
 	sys.exit()
+
+print '\nSetting API Key to: ' + str(PAYBOOK_API_KEY)
 print 'Server started successfully\n'
 print 'Enjoy your Paybook SYNC experience \\0/\n\n'
 # ------ END of Config script
@@ -283,6 +275,17 @@ def transactions():
 	except Exception as e:
 		transactions_response = _Utilities.internal_server_error(e)
 	return transactions_response
+
+
+
+
+
+
+
+
+
+
+
 
 if __name__ == "__main__":
 	app.debug = True
