@@ -9,6 +9,6 @@
 ### En la consola ejecutar
 
 ````
-$ python main.py -a b7e57daf2b782bee22f05e38a1823c3a
+$ python main.py -a API_KEY
 ```
 
