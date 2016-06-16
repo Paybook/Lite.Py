@@ -14,7 +14,7 @@ from json import dumps
 import json
 from flask import Flask, Response, url_for, redirect
 from flask import request
-from flask.ext.cors import CORS, cross_origin
+from flask_cors import CORS, cross_origin
 import logging
 import getopt
 
