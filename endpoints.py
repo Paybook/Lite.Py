@@ -108,7 +108,9 @@ def credentials():
 		logger.debug('Creating credentials ... ')
 		logger.debug(credentials)
 		credentials = paybook_sdk.Credentials(session=session,id_site=id_site,credentials=credentials)
-		logger.debug('Status: ' + credentials.status)
+		logger.debug('Id credential: ' + credentials.id_credential)
+		logger.debug('Twofa: ' + credentials.twofa)
+		logger.debug("curl -X POST -d '{\"twofa_key\":\"token\",\"token\":\"4f3e7fe982f18898f970e4805b4774a3\",\"twofa\":\"" + credentials.twofa + "\",\"twofa_value\":\"test\",\"id_credential\":\"" + credentials.id_credential + "\"}' http://localhost:5000/twofa --header \"Content-Type:application/json\"")
 		logger.debug('Sending response ... ')
 		credentials_response = _Utilities.Success(credentials.get_json()).get_response()
 	except paybook_sdk.Error as error:
@@ -213,6 +215,34 @@ def transactions():
 		transactions_response = _Utilities.Error(error.message,error.code).get_response()
 	return transactions_response
 
-
+def twofa():
+	try:
+		logger = logging.getLogger('app')
+		logger.debug('\n/twofa')
+		params = json.loads(request.data)
+		logger.debug(params)
+		token = params['token']
+		id_credential = params['id_credential']
+		credentials_twofa = params['twofa']
+		twofa_key = params['twofa_key']
+		twofa_value = params['twofa_value']
+		logger.debug('Executing ... ')
+		session = paybook_sdk.Session(token=token)
+		credentials = None
+		credentials_list = paybook_sdk.Credentials.get(session=session)
+		for c in credentials_list:
+			if c.id_credential == id_credential:
+				credentials = c
+		credentials.twofa = credentials_twofa
+		credentials.twofa_config = {
+			'name' : twofa_key
+		}#End of twofa_config
+		twofa_set = credentials.set_twofa(session=session,twofa_value=twofa_value)
+		logger.debug('Towfa value set: ' + str(twofa_set))		
+		logger.debug('Sending response ... ')
+		twofa_response = _Utilities.Success(twofa_set).get_response()
+	except paybook_sdk.Error as error:
+		twofa_response = _Utilities.Error(error.message,error.code).get_response()
+	return twofa_response
 
 

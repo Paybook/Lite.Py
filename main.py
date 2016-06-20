@@ -82,25 +82,10 @@ def transactions():
 	print 'endpoints.transactions'
 	return endpoints.transactions()
 
-# @app.route("/twofa", methods=['POST'])
-# def twofa():
-# 	try:
-# 		logger = logging.getLogger('app')
-# 		logger.debug('\n/twofa')
-# 		params = json.loads(request.data)
-# 		logger.debug(params)
-# 		token = params['token']
-# 		id_site = params['id_site']
-# 		fatwo = params['twofa']
-# 		logger.debug('Executing ... ')
-# 		twofa_response = paybook.twofa(token,id_site,fatwo)
-# 		logger.debug('Sending response ... ')
-# 		twofa_response = _Utilities.Success(twofa_response).get_response()
-# 	except _Paybook_Error as e:
-# 		twofa_response = e.get_response()
-# 	except Exception as e:
-# 		twofa_response = _Utilities.internal_server_error(e)
-# 	return twofa_response
+@app.route("/twofa", methods=['POST'])
+def twofa():
+	print 'enpoints.twofa'
+	return endpoints.twofa()
 
 if __name__ == "__main__":
 	app.debug = True
