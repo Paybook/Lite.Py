@@ -4,6 +4,8 @@ import logging
 from logging.handlers import TimedRotatingFileHandler
 from flask import json
 from flask import make_response
+import sys
+import getopt
 
 def setup_logger(name):
 	file_name = name + '.log'
@@ -56,3 +58,35 @@ def internal_server_error(e):
 	print 'Wops! Internal Server Error :('
 	print e
 	return Error('Internal Server Error',500).get_response()
+
+def get_cmd_params(argv):
+	cmd_params = {
+		'api_key' : None,
+		'database' : None
+	}#End of params
+	a_param = None
+	d_param = None
+	try:
+		opts, args = getopt.getopt(argv,"a:d:",["apikey=","database="])
+	except Exception as e:
+		print 'Error getting params ... '
+		print e
+		sys.exit()
+	for opt, arg in opts:
+		if opt == '-a' or opt == '--apikey':
+			cmd_params['api_key'] = arg
+			a_param = True
+		if opt == '-d' or opt == '--database':
+			cmd_params['database'] = arg
+			d_param = True
+	if cmd_params['api_key'] is None or a_param is None:
+		print '-a param is required (paybook api key)'
+		sys.exit()
+	# if cmd_params['database'] is None or d_param is None:
+	# 	print '-d param is required (database file path)'
+	# 	sys.exit()
+	return cmd_params
+
+
+
+
