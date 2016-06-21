@@ -40,13 +40,13 @@ Ejecutar el proyecto pasando como parámetro tu API Key de Paybook:
 $ python main.py -a YOUR_PAYBOOK_API_KEY
 ```
 
-Puedes acceder a la aplicación de React, en tu navegador introduce:
+Puedes acceder a la aplicación de React por medio de tu navegador:
 
 ```
 http://localhost:5000/
 ```
 
-Puedes checar los registros de ejecución (logs) en el archivo app.log ubicado en el directorio de lite-python (el archivo se creará automáticamente una vez que sea ejecutado el programa, si el archivo ya existe utilizará el existente). Puedes visualizarlo constantemente para checar las peticiones que se hacen a la aplicación en backend:
+En una nueva terminal puedes checar los registros de ejecución (logs). Estos se encuentran en el archivo app.log ubicado en el directorio de lite-python (el archivo se creará automáticamente una vez que sea ejecutado el programa, si el archivo ya existe utilizará el existente). Puedes visualizarlo constantemente para checar las peticiones que se hacen a la aplicación en backend:
 
 ```
 $ tail -f app.log
