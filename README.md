@@ -20,6 +20,11 @@ Este es un proyecto que muestra como construir una aplicación de backend en Pyt
 4. Conexión directa con [Lite-Frontend-React](https://github.com/Paybook/lite-frontend-react)
 5. Contiene las siguientes funcionalidades: registro de usuarios, inicio de sesión, registro y borrado de credenciales de instituciones, consulta de transacciones e integración con el widget de Paybook.
 
+A continuación se muestra un diagrama con la arquitectura del proyecto:
+
+![Diagrama](https://github.com/Paybook/lite-python/blob/master/lite_python_diagram.png "Diagrama")
+
+
 ### Ejecución:
 
 Clonar el proyecto en tu equipo
