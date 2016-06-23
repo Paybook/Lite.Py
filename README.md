@@ -4,11 +4,8 @@
 ### Requerimientos
 
 1. [Python 2.7.6](https://www.python.org/downloads/)
-2. Paybook Python Library version 1.8 o posterior ```pip install paybook```
-3. Requests Python Library ```pip install requests```
-4. Flask Python Library ```pip install flask```
-5. Flask Cors Python Library ```pip install flask-cors```
-6. Un API Key de Paybook
+2. Instalar dependencias ```pip install -r requirements.txt```
+3. Un API Key de Paybook
 
 ### Descripción:
 
