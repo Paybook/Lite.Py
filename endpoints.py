@@ -175,9 +175,13 @@ def accounts():
 		logger.debug(id_site)
 		if id_site == 'null':
 			id_site = None
+		options = {}
+		if id_site is not None:
+			logger.debug('Filtering by id_site ' + id_site + ' ... ')
+			options['id_site'] = id_site
 		logger.debug('Executing ... ')
 		session = paybook_sdk.Session(token=token)
-		accounts = paybook_sdk.Account.get(session=session)
+		accounts = paybook_sdk.Account.get(session=session,options=options)
 		accounts_response = []
 		for account in accounts:
 			accounts_response.append(account.get_json())
@@ -204,7 +208,14 @@ def transactions():
 			id_account = None
 		logger.debug('Executing ... ')
 		session = paybook_sdk.Session(token=token)
-		transactions = paybook_sdk.Transaction.get(session=session)
+		options = {}
+		if id_site is not None:
+			logger.debug('Filtering by id_site ' + id_site + ' ... ')
+			options['id_site'] = id_site
+		if id_account is not None:
+			logger.debug('Filtering by id_account ' + id_account + ' ... ')
+			options['id_account'] = id_account
+		transactions = paybook_sdk.Transaction.get(session=session,options=options)
 		transactions_response = []
 		for transaction in transactions:
 			transactions_response.append(transaction.get_json())
