@@ -4,11 +4,8 @@
 ### Requerimientos
 
 1. [Python 2.7.6](https://www.python.org/downloads/)
-2. Paybook Python Library version 1.8 o posterior ```pip install paybook```
-3. Requests Python Library ```pip install requests```
-4. Flask Python Library ```pip install flask```
-5. Flask Cors Python Library ```pip install flask-cors```
-6. Un API Key de Paybook
+2. Instalar dependencias ```pip install -r requirements.txt```
+3. Un API Key de Paybook
 
 ### Descripción:
 
@@ -19,6 +16,11 @@ Este es un proyecto que muestra como construir una aplicación de backend en Pyt
 3. Cuenta con una conexión a una base de datos SQL a través del gestor [sqlite3](http://www.tutorialspoint.com/sqlite/sqlite_python.htm)
 4. Conexión directa con [Lite-Frontend-React](https://github.com/Paybook/lite-frontend-react)
 5. Contiene las siguientes funcionalidades: registro de usuarios, inicio de sesión, registro y borrado de credenciales de instituciones, consulta de transacciones e integración con el widget de Paybook.
+
+A continuación se muestra un diagrama con la arquitectura del proyecto:
+
+![Diagrama](https://github.com/Paybook/lite-python/blob/master/lite_python_diagram.png "Diagrama")
+
 
 ### Ejecución:
 
