@@ -6,10 +6,12 @@ from flask import json
 from flask import make_response
 import sys
 import getopt
+import os
 
 def setup_logger(name):
+	project_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 	file_name = name + '.log'
-	complete_file_name = './' + file_name
+	complete_file_name = project_path + '/' + file_name
 	logging_level = logging.DEBUG
 	formatter = logging.Formatter('%(asctime)s - [%(levelname)s] - %(module)s - %(funcName)s:%(lineno)d - %(message)s','%Y-%m-%d %H:%M:%S')
 	formatter = logging.Formatter('%(message)s')		

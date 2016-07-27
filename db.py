@@ -1,7 +1,10 @@
 import sqlite3
 import datetime
+import os
 
-connection = sqlite3.connect('./paybook.db',check_same_thread=False)
+project_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
+
+connection = sqlite3.connect(project_path + '/paybook.db',check_same_thread=False)
 cur = connection.cursor()
 
 users_table_cmd = "SELECT name FROM sqlite_master WHERE type='table' AND name='users'"
