@@ -24,8 +24,6 @@ import paybook.sdk as paybook_sdk
 cmd_params = _Utilities.get_cmd_params(sys.argv[1:])
 paybook_api_key = cmd_params['api_key']
 # database_path = cmd_params['database']
-# Test
-# Test
 
 paybook_sdk.Paybook(paybook_api_key)
 print '\nSetting API Key to: ' + str(paybook_api_key)
