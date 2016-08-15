@@ -25,7 +25,7 @@ cmd_params = _Utilities.get_cmd_params(sys.argv[1:])
 paybook_api_key = cmd_params['api_key']
 # database_path = cmd_params['database']
 
-paybook_sdk.Paybook(paybook_api_key)
+paybook_sdk.Paybook(paybook_api_key,print_calls=False)
 print '\nSetting API Key to: ' + str(paybook_api_key)
 print 'Server started successfully\n'
 print 'Enjoy your Paybook SYNC experience V_0.1 \\0/\n\n'
