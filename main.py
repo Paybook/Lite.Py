@@ -21,11 +21,11 @@ import endpoints
 import paybook
 import paybook.sdk as paybook_sdk
 
-# Comments for reboot
-
 cmd_params = _Utilities.get_cmd_params(sys.argv[1:])
 paybook_api_key = cmd_params['api_key']
 # database_path = cmd_params['database']
+
+# Commet for reboot
 
 paybook_sdk.Paybook(paybook_api_key,print_calls=False)
 print '\nSetting API Key to: ' + str(paybook_api_key)
