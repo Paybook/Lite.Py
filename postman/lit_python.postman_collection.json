@@ -1,0 +1,33 @@
+{
+	"id": "1100cdd5-2db5-3201-d7e6-3312b7f82dd8",
+	"name": "Lite Python",
+	"description": "",
+	"order": [
+		"a354eb37-bd24-7208-12e7-325b43ff4bc5"
+	],
+	"folders": [],
+	"timestamp": 1476362375681,
+	"owner": "772710",
+	"public": false,
+	"published": false,
+	"requests": [
+		{
+			"id": "a354eb37-bd24-7208-12e7-325b43ff4bc5",
+			"headers": "",
+			"url": "{{env_url}}/transactions?token={{token}}&limit=1",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1476362588685,
+			"name": "Get transactions",
+			"description": "",
+			"collectionId": "1100cdd5-2db5-3201-d7e6-3312b7f82dd8",
+			"responses": []
+		}
+	]
+}

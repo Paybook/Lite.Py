@@ -202,10 +202,16 @@ def transactions():
 		logger.debug(id_account)
 		id_site = request.args.get('id_site')
 		id_account = request.args.get('id_account')
+		skip = request.args.get('skip')
+		limit = request.args.get('limit')
 		if id_site == 'null':
 			id_site = None
 		if id_account == 'null':
 			id_account = None
+		if skip == 'null':
+			skip = None
+		if limit == 'null':
+			limit = None
 		logger.debug('Executing ... ')
 		session = paybook_sdk.Session(token=token)
 		options = {}
@@ -215,6 +221,12 @@ def transactions():
 		if id_account is not None:
 			logger.debug('Filtering by id_account ' + id_account + ' ... ')
 			options['id_account'] = id_account
+		if skip is not None:
+			logger.debug('Skiping ' + skip + ' ... ')
+			options['skip'] = skip
+		if limit is not None:
+			logger.debug('Adding limit ' + limit + ' ... ')
+			options['limit'] = limit
 		transactions = paybook_sdk.Transaction.get(session=session,options=options)
 		transactions_response = []
 		for transaction in transactions:
